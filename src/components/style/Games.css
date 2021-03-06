@@ -1,0 +1,50 @@
+*{
+  padding:0;
+  margin: 0;
+  box-sizing:border-box;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
+}
+.Game{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.Game__Title{
+  margin-bottom: 10px;
+  font-size:40px;
+  color: white;
+  margin: 0 auto;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.Game__Board{
+ display: grid;
+ grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+ width: 20vw;
+ height: 40vh;
+}
+
+
+.Board__Item button{
+  height: 100%;
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #61dafb;
+  border: 10px solid black;
+  color: black;
+  font-size: 80px;
+  font-weight: bold;
+  /* height: 100px;
+  width: 100px; */
+}
