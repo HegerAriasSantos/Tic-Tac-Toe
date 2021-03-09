@@ -9,6 +9,8 @@ class Game extends React.Component {
       ListSquares: Array(9).fill(null),
       Xturn: true,
       winner: null,
+      Xpts: 0,
+      Opts: 0,
     };
   }
   calculateWinner(squares) {
@@ -34,17 +36,6 @@ class Game extends React.Component {
     }
     return null;
   }
-  handleClick = (i) => {
-    const Squares = this.state.ListSquares.slice();
-    if (this.calculateWinner(Squares) || Squares[i]) {
-      return;
-    }
-    Squares[i] = this.state.Xturn ? "X" : "O";
-    this.setState({
-      ListSquares: Squares,
-      Xturn: this.state.Xturn ? false : true,
-    });
-  };
   positionSquare(i) {
     return (
       <div className="Board__Item">
@@ -55,6 +46,37 @@ class Game extends React.Component {
       </div>
     );
   }
+
+  handleClick = (i) => {
+    const Squares = this.state.ListSquares.slice();
+    if (this.calculateWinner(Squares) || Squares[i]) {
+      return;
+    } else {
+      Squares[i] = this.state.Xturn ? "X" : "O";
+      this.setState({
+        ListSquares: Squares,
+        Xturn: this.state.Xturn ? false : true,
+      });
+    }
+    let winner = this.calculateWinner(Squares);
+    if (winner !== null) {
+      winner === "X"
+        ? this.setState({
+            Xpts: this.state.Xpts + 1,
+          })
+        : this.setState({
+            Opts: this.state.Opts + 1,
+          });
+    }
+  };
+
+  again() {
+    this.setState({
+      ListSquares: Array(9).fill(null),
+      Xturn: true,
+    });
+  }
+
   render() {
     let winner = this.calculateWinner(this.state.ListSquares);
     let status;
@@ -66,6 +88,16 @@ class Game extends React.Component {
 
     return (
       <div className="Game">
+        <div className="Ptos">
+          <div className="Ptos__ptos">
+            <div>X points</div>
+            <div>{this.state.Xpts}</div>
+          </div>
+          <div className="Ptos__ptos">
+            <div>O Points</div>
+            <div>{this.state.Opts}</div>
+          </div>
+        </div>
         <div>
           <h1 className="Game__Title">{status}</h1>
           <div className="Game__Board">
@@ -79,6 +111,14 @@ class Game extends React.Component {
             {this.positionSquare(7)}
             {this.positionSquare(8)}
           </div>
+        </div>
+        <div>
+          <button
+            className="Game__repeat"
+            onClick={() => this.again(this.state.winner)}
+          >
+            Play again
+          </button>
         </div>
       </div>
     );

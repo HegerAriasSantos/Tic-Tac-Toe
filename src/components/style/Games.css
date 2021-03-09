@@ -12,9 +12,10 @@ body{
 }
 .Game{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 80vh;
+  flex-direction: column;
 }
 
 .Game__Title{
@@ -32,6 +33,12 @@ body{
  width: 20vw;
  height: 40vh;
 }
+.Game__repeat{
+  background-color: #61dafb;
+  font-size: 40px;
+  padding: 10px;
+  border-radius: 10px;
+}
 
 
 .Board__Item button{
@@ -48,3 +55,20 @@ body{
   /* height: 100px;
   width: 100px; */
 }
+
+.Ptos{
+  display: flex;
+  justify-content: space-between;
+  width: 40vw;
+  color:white;
+  font-size: 40px;
+
+}
+.Ptos__ptos{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+
+
